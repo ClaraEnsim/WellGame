@@ -2,6 +2,8 @@
 
 
 #include "WellGame/Public/Student.h"
+#include "EngineUtils.h"
+#include "Well_IA.h"
 #include "Components/BoxComponent.h"
 #include "WellGame/Public/Bonus.h"
 
@@ -50,15 +52,20 @@ void AStudent::DropBonus()
 {
 	if (BonusClasses.Num() > 0)
 	{
-		// Choisir un index aléatoire dans le tableau
 		int32 RandomIndex = FMath::RandRange(0, BonusClasses.Num() - 1);
-
 		TSubclassOf<ABonus> ChosenBonus = BonusClasses[RandomIndex];
 		if (ChosenBonus)
 		{
 			FVector SpawnLocation = GetActorLocation();
-			SpawnLocation.Z -= 50.f; // un peu en dessous du student
+			SpawnLocation.Z -= 50.f;
+
 			GetWorld()->SpawnActor<ABonus>(ChosenBonus, SpawnLocation, FRotator::ZeroRotator);
+
+			// Récupérer Well_IA dans la scène pour compter
+			for (TActorIterator<AWell_IA> It(GetWorld()); It; ++It)
+			{
+				It->BonusSpawned++;
+			}
 		}
 	}
 }

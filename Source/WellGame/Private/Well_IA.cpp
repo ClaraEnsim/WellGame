@@ -74,8 +74,8 @@ void AWell_IA::NotifyActorBeginOverlap(AActor* OtherActor)
 	ABonus* Bonus = Cast<ABonus>(OtherActor);
 	if (Bonus)
 	{
+		BonusCaught++;    // Incrémente le nombre de bonus attrapés
 		Bonus->Destroy();
-		// Score ou feedback ici
 	}
 }
 
