@@ -48,11 +48,18 @@ void AStudent::Tick(float DeltaTime)
 
 void AStudent::DropBonus()
 {
-	if (BonusClass)
+	if (BonusClasses.Num() > 0)
 	{
-		FVector SpawnLocation = GetActorLocation();
-		SpawnLocation.Z -= 50.f; // un peu en dessous du student
-		GetWorld()->SpawnActor<ABonus>(BonusClass, SpawnLocation, FRotator::ZeroRotator);
+		// Choisir un index aléatoire dans le tableau
+		int32 RandomIndex = FMath::RandRange(0, BonusClasses.Num() - 1);
+
+		TSubclassOf<ABonus> ChosenBonus = BonusClasses[RandomIndex];
+		if (ChosenBonus)
+		{
+			FVector SpawnLocation = GetActorLocation();
+			SpawnLocation.Z -= 50.f; // un peu en dessous du student
+			GetWorld()->SpawnActor<ABonus>(ChosenBonus, SpawnLocation, FRotator::ZeroRotator);
+		}
 	}
 }
 

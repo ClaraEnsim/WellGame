@@ -42,7 +42,7 @@ public:
 	float MaxX = 500.f;
 
 	UPROPERTY(EditAnywhere, Category="Bonus")
-	TSubclassOf<ABonus> BonusClass;
+	TArray<TSubclassOf<ABonus>> BonusClasses;
 
 	// Timer pour spawn bonus
 	FTimerHandle BonusTimerHandle;
