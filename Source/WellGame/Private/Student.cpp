@@ -3,9 +3,11 @@
 
 #include "WellGame/Public/Student.h"
 #include "EngineUtils.h"
+#include "IAGameMode.h"
 #include "Well_IA.h"
 #include "Components/BoxComponent.h"
 #include "WellGame/Public/Bonus.h"
+#include "ScoreUI.h"
 
 
 // Sets default values
@@ -64,7 +66,9 @@ void AStudent::DropBonus()
 			// Récupérer Well_IA dans la scène pour compter
 			for (TActorIterator<AWell_IA> It(GetWorld()); It; ++It)
 			{
-				It->BonusSpawned++;
+				AIAGameMode* GameMode = (AIAGameMode*)GetWorld()->GetAuthGameMode();
+
+				GameMode->AddBonusSpawn();
 			}
 		}
 	}

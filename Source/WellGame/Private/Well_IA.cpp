@@ -2,10 +2,13 @@
 
 
 #include "WellGame/Public/Well_IA.h"
+
+#include "IAGameMode.h"
 #include "Components/BoxComponent.h"
 #include "GameFramework/FloatingPawnMovement.h"
 #include "Kismet/GameplayStatics.h"
 #include "WellGame/Public/Bonus.h"
+
 
 
 // Sets default values
@@ -74,8 +77,11 @@ void AWell_IA::NotifyActorBeginOverlap(AActor* OtherActor)
 	ABonus* Bonus = Cast<ABonus>(OtherActor);
 	if (Bonus)
 	{
-		BonusCaught++;    // Incrémente le nombre de bonus attrapés
 		Bonus->Destroy();
+
+		AIAGameMode* GameMode = (AIAGameMode*)GetWorld()->GetAuthGameMode();
+
+		GameMode->AddBonus();
 	}
 }
 

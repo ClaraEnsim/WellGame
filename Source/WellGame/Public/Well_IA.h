@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "ScoreUI.h"
 #include "GameFramework/Pawn.h"
 #include "Well_IA.generated.h"
 
@@ -45,13 +46,6 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	float MaxX = 500.f;
 
-	// gestion des bonus
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Score")
-	int32 BonusCaught = 0;   
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Score")
-	int32 BonusMissed = 0;   
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Score")
-	int32 BonusSpawned = 0;  
+	UScoreUI* ScoreWidget;
 };
