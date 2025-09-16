@@ -12,14 +12,20 @@ float AIAGameMode::GetSuccessPercent() const
 void AIAGameMode::AddBonus()
 {
 	BonusCaught++;
-	GEngine->AddOnScreenDebugMessage(-1, 2.f, FColor::Red,
+	GEngine->AddOnScreenDebugMessage(-1, 2.f, FColor::Blue,
 			FString::Printf(TEXT("BonusCaught = %d"), BonusCaught));
 }
 
 void AIAGameMode::AddBonusSpawn()
 {
 	BonusSpawned++;
-	GEngine->AddOnScreenDebugMessage(-1, 2.f, FColor::Red,
+	GEngine->AddOnScreenDebugMessage(-1, 2.f, FColor::Blue,
 			FString::Printf(TEXT("BonusSpawned = %d"), BonusSpawned));
 }
 
+void AIAGameMode::AddBonusMissed()
+{
+	BonusSpawned++;
+	GEngine->AddOnScreenDebugMessage(-1, 2.f, FColor::Red,
+			FString::Printf(TEXT("BonusMissed = %d"), BonusMissed));
+}

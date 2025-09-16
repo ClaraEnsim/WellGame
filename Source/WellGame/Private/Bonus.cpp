@@ -2,6 +2,8 @@
 
 
 #include "WellGame/Public/Bonus.h"
+
+#include "IAGameMode.h"
 #include "Components/BoxComponent.h"
 
 // Sets default values
@@ -32,5 +34,17 @@ void ABonus::Tick(float DeltaTime)
 	FVector NewLocation = GetActorLocation();
 	NewLocation.Z -= FallSpeed * DeltaTime;
 	SetActorLocation(NewLocation);
+
+	if (NewLocation.Z < DestroyZ)
+	{
+		// Optionnel : prévenir le GameMode ou le puits que c'est un échec
+		AIAGameMode* GameMode = Cast<AIAGameMode>(GetWorld()->GetAuthGameMode());
+		if (GameMode)
+		{
+			GameMode->AddBonusMissed();
+		}
+
+		Destroy();
+	}
 }
 

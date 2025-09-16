@@ -35,4 +35,7 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category="Score")
 	void AddBonusSpawn();
+
+	UFUNCTION(BlueprintCallable, Category="Score")
+	void AddBonusMissed();
 };
